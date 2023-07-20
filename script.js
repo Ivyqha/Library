@@ -11,6 +11,14 @@ function addBookToLibrary() {
     myLibrary.push(titleInput); 
     document.getElementById("title").value = ""; 
 
+    var authorInput = document.getElementById("author").value; 
+    myLibrary.push(authorInput); 
+    document.getElementById("author").value = ""; 
+
+    var pageInput = document.getElementById("page").value; 
+    myLibrary.push(pageInput); 
+    document.getElementById("page").value = ""; 
+
     displayInputs();
 }
 
@@ -31,11 +39,22 @@ function displayInputs() {
 }
 
 var submitBtn = document.getElementById("submit"); 
-submitBtn.addEventListener("click", function (event){
+var form = document.querySelector("form"); 
+form.addEventListener("submit", function (event){
+    var isFormValid = true; 
+   
+    var inputs = form.querySelectorAll("input[required"); 
+
+    for(var i=0; i<inputs.length; i++) { 
+        if (inputs[i].value.trim()=== "") { 
+            isFormValid = false; 
+            break; 
+        }
+    }
+    
     event.preventDefault()
     addBookToLibrary(); 
 }); 
-
 
 
 /* 

@@ -15,9 +15,13 @@
 
     <form class= "book-form"> 
         <label for="title">Title: </label>
-        <input type="text" placeholder = "Title of Book" id = "title" name = "title" >
+        <input type="text" placeholder = "Title of Book" id = "title" name = "title" required/>
 
-        
+        <label for="author">Author: </label>
+        <input type="text" placeholder = "Author of Book" id = "author" name = "author" required/>
+
+        <label for="page">Pages: </label>
+        <input type="text" placeholder = "Pages" id = "page" name = "page" required/>        
 
         <button id = "submit" type = "submit">Submit</button>
     </form>
