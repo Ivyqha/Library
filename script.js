@@ -30,11 +30,11 @@ function displayInputs() {
     for (var i =0; i <myLibrary.length; i++){
         var inputText = myLibrary[i]; 
 
-        var p = document.createElement("p"); 
+        var div = document.createElement("div"); 
         var textNode = document.createTextNode(inputText); 
-        p.appendChild(textNode); 
+        div.appendChild(textNode); 
         //appends paragraph to bookmark (so it displays on page)
-        bookmark.appendChild(p)
+        bookmark.appendChild(div)
     }
 }
 
@@ -51,7 +51,6 @@ form.addEventListener("submit", function (event){
             break; 
         }
     }
-    
     event.preventDefault()
     addBookToLibrary(); 
 }); 
