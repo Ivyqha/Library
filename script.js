@@ -55,6 +55,16 @@ form.addEventListener("submit", function (event){
     addBookToLibrary(); 
 }); 
 
+var addBookBtn = document.getElementById("add-book"); 
+addBookBtn.addEventListener("click", function(event) { 
+    if (form.style.display === "none") { 
+        form.style.display = "block"; 
+    } else {
+        form.style.display ="none"; 
+    }
+}); 
+
+
 
 /* 
 
