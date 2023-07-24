@@ -7,15 +7,15 @@ function Book(title, author, page) {
 }
 
 function addBookToLibrary() { 
-    var titleInput = document.getElementById("title").value; 
+    const titleInput = document.getElementById("title").value; 
     myLibrary.push(titleInput); 
     document.getElementById("title").value = ""; 
 
-    var authorInput = document.getElementById("author").value; 
+    const authorInput = document.getElementById("author").value; 
     myLibrary.push(authorInput); 
     document.getElementById("author").value = ""; 
 
-    var pageInput = document.getElementById("page").value; 
+    const pageInput = document.getElementById("page").value; 
     myLibrary.push(pageInput); 
     document.getElementById("page").value = ""; 
 
@@ -27,25 +27,30 @@ function displayInputs() {
     bookmark.innerHTML=""; 
 
     //for each array, creates a new paragraph and appends input to paragraph element
-    for (var i =0; i <myLibrary.length; i++){
-        var inputText = myLibrary[i]; 
+    for (let i =0; i <myLibrary.length; i++){
+        const inputText = myLibrary[i]; 
 
-        var div = document.createElement("div"); 
-        var textNode = document.createTextNode(inputText); 
+        const div = document.createElement("div"); 
+        const textNode = document.createTextNode(inputText); 
         div.appendChild(textNode); 
         //appends paragraph to bookmark (so it displays on page)
         bookmark.appendChild(div)
     }
 }
 
-var submitBtn = document.getElementById("submit"); 
-var form = document.querySelector("form"); 
-form.addEventListener("submit", function (event){
-    var isFormValid = true; 
-   
-    var inputs = form.querySelectorAll("input[required"); 
+const submitBtn = document.getElementById("submit"); 
+const form = document.querySelector("form"); 
+const isFormValid = true; 
+const inputs = form.querySelectorAll("input[required]")
+form.addEventListener("submit", validForm); 
 
-    for(var i=0; i<inputs.length; i++) { 
+const addBookBtn = document.getElementById("add-book"); 
+addBookBtn.addEventListener("click", function (event) { 
+    form.style.display = "block";
+}); 
+
+function validForm (event) { ; 
+    for(let i=0; i<inputs.length; i++) { 
         if (inputs[i].value.trim()=== "") { 
             isFormValid = false; 
             break; 
@@ -53,17 +58,19 @@ form.addEventListener("submit", function (event){
     }
     event.preventDefault()
     addBookToLibrary(); 
-}); 
+    form.style.display = "none"; 
+}
 
-var addBookBtn = document.getElementById("add-book"); 
-addBookBtn.addEventListener("click", function(event) { 
-    if (form.style.display === "none") { 
-        form.style.display = "block"; 
-    } else {
-        form.style.display ="none"; 
+const closeBtn = document.getElementById("close-form")
+closeBtn.addEventListener("click", exitForm);
+
+function exitForm() { 
+    for (let i=0; i<inputs.length; i++) {
+        inputs[i].removeAttribute("required"); 
     }
-}); 
-
+    console.log("it works")
+    form.style.display="none";
+}
 
 
 /* 
