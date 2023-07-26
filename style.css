@@ -17,7 +17,8 @@ h1{
 .addbtn-div { 
     justify-content: center;
     text-align: center;
-    margin: 95px;
+    margin-top: 90px; 
+    margin-bottom: 70px;
 }
 
 .add-book { 
@@ -96,13 +97,15 @@ input {
     outline: none;
     border: 2px solid rgb(239, 226, 214);
     border-radius: 15px;
-    background-color: rgb(249, 243, 237) ; 
+    background-color: rgb(249, 243, 237) ;
+    padding-left: 15px;
+    font-size: 15px;  
 }
 
-[type="text"]  {
-    padding-left: 15px;
-    font-size: 15px; 
-   
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 label { 
@@ -131,6 +134,10 @@ label {
     background-color: rgb(197, 124, 102);
     border: 2px solid rgb(197, 124, 102);
     color:  rgb(255, 255, 255); 
+}
+
+.book-card { 
+    border: 1px solid black; 
 }
 
 /*@keyframes open-form {

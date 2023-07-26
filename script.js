@@ -1,48 +1,54 @@
-let myLibrary = []; 
-
 function Book(title, author, page) { 
     this.title = title;
     this.author = author;
-    this.page= page;
+    this.page = page;
 }
 
-function addBookToLibrary() { 
-    const titleInput = document.getElementById("title").value; 
-    myLibrary.push(titleInput); 
-    document.getElementById("title").value = ""; 
+function Library() { 
+    this.books = [] ; 
+    this.addBook = function (book) { 
+        this.books.push(book); 
+    }; 
+    this.displayBooks = function () { 
+        const libraryContainer = document.getElementById("library");
+        libraryContainer.innerHTML=""; 
+        this.books.forEach(function(book) {  
+            const bookCard = document.createElement("div")
+            bookCard.classList.add("book-card"); 
 
-    const authorInput = document.getElementById("author").value; 
-    myLibrary.push(authorInput); 
-    document.getElementById("author").value = ""; 
+            const bookTitle = document.createElement("h2"); 
+            bookTitle.textContent = book.title; 
+            bookCard.appendChild(bookTitle); 
 
-    const pageInput = document.getElementById("page").value; 
-    myLibrary.push(pageInput); 
-    document.getElementById("page").value = ""; 
+            const bookAuthor = document.createElement("p"); 
+            bookAuthor.textContent = "By: " + book.author; 
+            bookCard.appendChild(bookAuthor); 
 
-    displayInputs();
-}
+            const bookPage = document.createElement("p"); 
+            bookPage.textContent = book.page + " pages"; 
+            bookCard.appendChild(bookPage); 
 
-function displayInputs() { 
-    var bookmark = document.getElementById("display"); 
-    bookmark.innerHTML=""; 
-
-    //for each array, creates a new paragraph and appends input to paragraph element
-    for (let i =0; i <myLibrary.length; i++){
-        const inputText = myLibrary[i]; 
-
-        const div = document.createElement("div"); 
-        const textNode = document.createTextNode(inputText); 
-        div.appendChild(textNode); 
-        //appends paragraph to bookmark (so it displays on page)
-        bookmark.appendChild(div)
+            libraryContainer.appendChild(bookCard); 
+        });
     }
+}
+const library = new Library(); 
+
+function createBookFromUserInput () { 
+    const title = document.getElementById("title").value; 
+    const author = document.getElementById("author").value; 
+    const page = document.getElementById("page").value; 
+
+    const newBook = new Book(title, author, page)
+    library.addBook(newBook)
+    library.displayBooks(); 
 }
 
 const submitBtn = document.getElementById("submit"); 
 const form = document.querySelector("form"); 
 const isFormValid = true; 
 const inputs = form.querySelectorAll("input[required]")
-form.addEventListener("submit", validForm); 
+submitBtn.addEventListener("click", validForm); 
 
 const addBookBtn = document.getElementById("add-book"); 
 addBookBtn.addEventListener("click", function (event) { 
@@ -60,27 +66,24 @@ function validForm (event) { ;
         }
     }
     event.preventDefault()
-    addBookToLibrary(); 
-    form.style.display = "none"; 
+    createBookFromUserInput()
+    form.style.display= "none"; 
+    form.reset(); 
 }
 
 function exitForm() { 
     for (let i=0; i<inputs.length; i++) {
         inputs[i].removeAttribute("required"); 
     }
-    console.log("it works")
     form.style.display="none";
 }
 
 
 /* 
-
-1) Click button (Add book) => Actives a pop up form 
-2) Input details of book ( title, author , pages) 
-3) Click submit button 
-4) Adds book to the library 
-5) Any other book adds to the library on top of previous added ones 
-6) button on bookmarks to remove from library
-7) button on bookmark to mark as read. 
+To do: 
+1) checklist for it has been read 
+2) if book has already been added = error 
+3) remove book from library 
+5) edit button 
 
 */ 
