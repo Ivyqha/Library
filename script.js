@@ -1,9 +1,9 @@
 let myLibrary = []; 
 
 function Book(title, author, page) { 
-    this.title = title
-    this.author = author
-    this.page= page
+    this.title = title;
+    this.author = author;
+    this.page= page;
 }
 
 function addBookToLibrary() { 
@@ -49,6 +49,9 @@ addBookBtn.addEventListener("click", function (event) {
     form.style.display = "block";
 }); 
 
+const closeBtn = document.getElementById("closebtn")
+closeBtn.addEventListener("click", exitForm);
+
 function validForm (event) { ; 
     for(let i=0; i<inputs.length; i++) { 
         if (inputs[i].value.trim()=== "") { 
@@ -60,9 +63,6 @@ function validForm (event) { ;
     addBookToLibrary(); 
     form.style.display = "none"; 
 }
-
-const closeBtn = document.getElementById("close-form")
-closeBtn.addEventListener("click", exitForm);
 
 function exitForm() { 
     for (let i=0; i<inputs.length; i++) {
