@@ -1,7 +1,8 @@
-function Book(title, author, page) { 
+function Book(title, author, page, read) { 
     this.title = title;
     this.author = author;
     this.page = page;
+    this.isRead = false; 
 }
 
 function Library() { 
@@ -11,6 +12,7 @@ function Library() {
     }; 
     this.displayBooks = function () { 
         const libraryContainer = document.getElementById("library");
+
         libraryContainer.innerHTML=""; 
         this.books.forEach(function(book) {  
             const bookCard = document.createElement("div")
@@ -28,8 +30,25 @@ function Library() {
             bookPage.textContent = book.page + " pages"; 
             bookCard.appendChild(bookPage); 
 
+            const readLabel = document.createElement("label"); 
+            readLabel.textContent = "Read: "; 
+
+            const readRadioYes = document.createElement("input");
+            readRadioYes.type = "checkbox";
+            readRadioYes.name = "readStatus";
+            readRadioYes.value = "checked";
+            readLabel.appendChild(readRadioYes); 
+
+            bookCard.appendChild(readLabel)
             libraryContainer.appendChild(bookCard); 
+
         });
+
+        const yesSelected = document.querySelector('input[name="status"]');
+    
+        if (yesSelected.checked) { 
+            readRadioYes.checked = true 
+        }; 
     }
 }
 const library = new Library(); 
@@ -40,9 +59,10 @@ function createBookFromUserInput () {
     const page = document.getElementById("page").value; 
 
     const newBook = new Book(title, author, page)
+    
     library.addBook(newBook)
     library.displayBooks(); 
-}
+} 
 
 const submitBtn = document.getElementById("submit"); 
 const form = document.querySelector("form"); 
@@ -81,7 +101,6 @@ function exitForm() {
 
 /* 
 To do: 
-1) checklist for it has been read 
 2) if book has already been added = error 
 3) remove book from library 
 5) edit button 

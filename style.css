@@ -24,7 +24,7 @@ h1{
 .add-book { 
     border: none;
     font-size: 35px;
-    color:rgb(255, 143, 109); 
+    color: rgb(251, 125, 86); 
 }
 
 .add-book:hover { 
@@ -34,6 +34,7 @@ h1{
 
 h3{
     background-color: rgb(239, 226, 214); 
+    position: relative;
     margin-left: 45px;
     font-size: 25px;
     color: rgb(62, 37, 8); 
@@ -52,7 +53,7 @@ h3{
     align-items: center;
     font-weight: bolder;  
     font-size: 30px;
-    color: rgb(255, 143, 109); 
+    color: rgb(251, 125, 86); 
     border: transparent;
     margin-left: 25px;
 }
@@ -74,7 +75,7 @@ h3{
     margin: auto ; 
     background-color: rgb(239, 226, 214);
     width: 300px;
-    height: 400px;
+    height: 410px;
     border-radius: 20px;
     
 }
@@ -108,8 +109,30 @@ input::-webkit-inner-spin-button {
     margin: 0;
 }
 
-label { 
+label[for="title"],
+label[for="author"], 
+label[for="page"] { 
     display: none;
+}
+
+label[for="status"], 
+label[for="yes"] { 
+    background-color: rgb(239, 226, 214); 
+    position: relative;
+}
+
+.radio { 
+    background-color: rgb(239, 226, 214);
+    position: relative;
+    display: flex;
+    width: 300px;
+    justify-content: center;
+    align-items: center;
+}
+
+input[type="checkbox"] { 
+    width: 20px;
+
 }
 
 .submitBtn { 
@@ -119,10 +142,9 @@ label {
     justify-content: center;
     width: 270px;
     height: 40px;
-    margin-top: 60px;
-    background-color: rgb(255, 143, 109);
+    background-color: rgb(251, 125, 86);
     color:rgb(255, 255, 255);  
-    border: 2px solid rgb(255, 143, 109);
+    border: 2px solid rgb(251, 125, 86);
     font-weight: bold;
     border-radius: 15px;
     padding: 15px;
@@ -138,6 +160,7 @@ label {
 
 .book-card { 
     border: 1px solid black; 
+    font-family:'Nunito Sans', sans-serif;
 }
 
 /*@keyframes open-form {
