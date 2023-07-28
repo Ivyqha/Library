@@ -80,8 +80,8 @@ h3{
     
 }
 
-.book-form { 
-     display: none; 
+form { 
+    display: none;
 }
 
 /* .book-form { 
@@ -111,7 +111,7 @@ input::-webkit-inner-spin-button {
 
 label[for="title"],
 label[for="author"], 
-label[for="page"] { 
+label[for="pages"] { 
     display: none;
 }
 

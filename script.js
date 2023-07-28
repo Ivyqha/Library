@@ -1,4 +1,4 @@
-function Book(title, author, page, read) { 
+function Book(title, author, page) { 
     this.title = title;
     this.author = author;
     this.page = page;
@@ -12,43 +12,35 @@ function Library() {
     }; 
     this.displayBooks = function () { 
         const libraryContainer = document.getElementById("library");
-
         libraryContainer.innerHTML=""; 
+
         this.books.forEach(function(book) {  
             const bookCard = document.createElement("div")
-            bookCard.classList.add("book-card"); 
-
             const bookTitle = document.createElement("h2"); 
-            bookTitle.textContent = book.title; 
-            bookCard.appendChild(bookTitle); 
-
             const bookAuthor = document.createElement("p"); 
-            bookAuthor.textContent = "By: " + book.author; 
-            bookCard.appendChild(bookAuthor); 
-
             const bookPage = document.createElement("p"); 
-            bookPage.textContent = book.page + " pages"; 
-            bookCard.appendChild(bookPage); 
-
             const readLabel = document.createElement("label"); 
-            readLabel.textContent = "Read: "; 
+            const readCheckbox = document.createElement("input");
 
-            const readRadioYes = document.createElement("input");
-            readRadioYes.type = "checkbox";
-            readRadioYes.name = "readStatus";
-            readRadioYes.value = "checked";
-            readLabel.appendChild(readRadioYes); 
+            bookCard.classList.add("book-card");
+            bookTitle.textContent = book.title; 
+            bookAuthor.textContent = "By: " + book.author;
+            bookPage.textContent = book.page + " pages"; 
+            readLabel.textContent = "Read: ";  
+            readCheckbox.type = "checkbox";
+            readCheckbox.name = "readStatus";
+            readCheckbox.value = "checked";
+            readCheckbox.checked = book.isRead; 
 
+            bookCard.appendChild(bookTitle); 
             bookCard.appendChild(readLabel)
+            bookCard.appendChild(bookAuthor); 
+            bookCard.appendChild(bookPage); 
+            readLabel.appendChild(readCheckbox); 
             libraryContainer.appendChild(bookCard); 
+            
 
         });
-
-        const yesSelected = document.querySelector('input[name="status"]');
-    
-        if (yesSelected.checked) { 
-            readRadioYes.checked = true 
-        }; 
     }
 }
 const library = new Library(); 
@@ -56,27 +48,29 @@ const library = new Library();
 function createBookFromUserInput () { 
     const title = document.getElementById("title").value; 
     const author = document.getElementById("author").value; 
-    const page = document.getElementById("page").value; 
+    const page = document.getElementById("pages").value; 
 
     const newBook = new Book(title, author, page)
-    
+       
     library.addBook(newBook)
     library.displayBooks(); 
+
 } 
 
 const submitBtn = document.getElementById("submit"); 
-const form = document.querySelector("form"); 
-const isFormValid = true; 
-const inputs = form.querySelectorAll("input[required]")
-submitBtn.addEventListener("click", validForm); 
-
 const addBookBtn = document.getElementById("add-book"); 
+const closeBtn = document.getElementById("closebtn")
+const form = document.querySelector("form"); 
+const inputs = form.querySelectorAll("input[required]")
+const isFormValid = true; 
+
+submitBtn.addEventListener("click", validForm); 
 addBookBtn.addEventListener("click", function (event) { 
     form.style.display = "block";
 }); 
-
-const closeBtn = document.getElementById("closebtn")
-closeBtn.addEventListener("click", exitForm);
+closeBtn.addEventListener("click", function (event)  {
+    exitForm() 
+})
 
 function validForm (event) { ; 
     for(let i=0; i<inputs.length; i++) { 
@@ -97,7 +91,6 @@ function exitForm() {
     }
     form.style.display="none";
 }
-
 
 /* 
 To do: 
