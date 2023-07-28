@@ -2,7 +2,6 @@ function Book(title, author, page) {
     this.title = title;
     this.author = author;
     this.page = page;
-    this.isRead = false; 
 }
 
 function Library() { 
@@ -14,7 +13,8 @@ function Library() {
         const libraryContainer = document.getElementById("library");
         libraryContainer.innerHTML=""; 
 
-        this.books.forEach(function(book) {  
+        for (let i=0; i <this.books.length; i++) {
+            const book = this.books[i];   
             const bookCard = document.createElement("div")
             const bookTitle = document.createElement("h2"); 
             const bookAuthor = document.createElement("p"); 
@@ -33,14 +33,19 @@ function Library() {
             readCheckbox.checked = book.isRead; 
 
             bookCard.appendChild(bookTitle); 
-            bookCard.appendChild(readLabel)
             bookCard.appendChild(bookAuthor); 
             bookCard.appendChild(bookPage); 
+            bookCard.appendChild(readLabel); 
             readLabel.appendChild(readCheckbox); 
-            libraryContainer.appendChild(bookCard); 
+            libraryContainer.appendChild(bookCard);    
             
-
-        });
+            const yesChecked = document.querySelector('input[name="status"]').checked
+            
+            if (yesChecked.checked) { 
+                readCheckbox.checked;
+            }
+        }
+        
     }
 }
 const library = new Library(); 
@@ -90,12 +95,9 @@ function exitForm() {
         inputs[i].removeAttribute("required"); 
     }
     form.style.display="none";
-}
+}; 
 
-/* 
-To do: 
-2) if book has already been added = error 
-3) remove book from library 
-5) edit button 
-
-*/ 
+//To do: 
+//2) if book has already been added = error 
+//3) remove book from library 
+//5) edit button
