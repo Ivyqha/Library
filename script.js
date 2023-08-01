@@ -19,33 +19,45 @@ function Library() {
             const bookTitle = document.createElement("h2"); 
             const bookAuthor = document.createElement("p"); 
             const bookPage = document.createElement("p"); 
+            const checkboxContainer = document.createElement ("div")
             const readLabel = document.createElement("label"); 
             const readCheckbox = document.createElement("input");
+            const removeBtn = document.createElement("button"); 
 
             bookCard.classList.add("book-card");
+            checkboxContainer.classList.add("checkboxContainer");
+            removeBtn.classList.add("removeBtn");
+            removeBtn.type = "submit"; 
             bookTitle.textContent = book.title; 
             bookAuthor.textContent = "By: " + book.author;
             bookPage.textContent = book.page + " pages"; 
-            readLabel.textContent = "Read: ";  
+            readLabel.textContent = "Read: ";
+            removeBtn.textContent = "Remove";
+            readLabel.htmlFor = "read";  
             readCheckbox.type = "checkbox";
             readCheckbox.name = "readStatus";
             readCheckbox.value = "checked";
+            readCheckbox.id = "read";
             readCheckbox.checked = book.isRead; 
 
             bookCard.appendChild(bookTitle); 
             bookCard.appendChild(bookAuthor); 
             bookCard.appendChild(bookPage); 
-            bookCard.appendChild(readLabel); 
-            readLabel.appendChild(readCheckbox); 
+            bookCard.appendChild(checkboxContainer);; 
+            bookCard.appendChild(removeBtn); 
+            checkboxContainer.appendChild (readLabel);
+            checkboxContainer.appendChild (readCheckbox);
             libraryContainer.appendChild(bookCard);    
-            
-            const yesChecked = document.querySelector('input[name="status"]').checked
-            
-            if (yesChecked.checked) { 
-                readCheckbox.checked;
-            }
-        }
-        
+
+            //creating onclick function for remove button: 
+            removeBtn.addEventListener("click", function ()  {
+                const index = Library.books.indexOf(books);
+                if (index !== -1) {
+                    Library.books.splice(index, 1);
+                    Library.displayBooks();
+                }; 
+            });
+        } 
     }
 }
 const library = new Library(); 
@@ -64,17 +76,21 @@ function createBookFromUserInput () {
 
 const submitBtn = document.getElementById("submit"); 
 const addBookBtn = document.getElementById("add-book"); 
-const closeBtn = document.getElementById("closebtn")
+const removeBtn = document.getElementById("remove-btn"); 
+const closeBtn = document.getElementById("closebtn");
+const overlay = document.querySelector(".overlay"); 
 const form = document.querySelector("form"); 
 const inputs = form.querySelectorAll("input[required]")
 const isFormValid = true; 
 
 submitBtn.addEventListener("click", validForm); 
-addBookBtn.addEventListener("click", function (event) { 
+addBookBtn.addEventListener("click", function (event) { ;  
     form.style.display = "block";
+    overlay.style.display = "block";
 }); 
 closeBtn.addEventListener("click", function (event)  {
-    exitForm() 
+    form.style.display = "none";
+    overlay.style.display = "none";
 })
 
 function validForm (event) { ; 
@@ -86,18 +102,13 @@ function validForm (event) { ;
     }
     event.preventDefault()
     createBookFromUserInput()
-    form.style.display= "none"; 
+    form.style.display= "none";
+    overlay.style.display = "none";
     form.reset(); 
 }
 
-function exitForm() { 
-    for (let i=0; i<inputs.length; i++) {
-        inputs[i].removeAttribute("required"); 
-    }
-    form.style.display="none";
-}; 
 
 //To do: 
 //2) if book has already been added = error 
 //3) remove book from library 
-//5) edit button
+//4) 

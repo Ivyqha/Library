@@ -12,43 +12,41 @@
 
 </head>
 <body>
+    <div class="overlay"></div>
 
     <header> 
         <h1> My Library </h1> 
     </header>
-    
+
     <div class="addbtn-div">
-    <button id="add-book" type = "submit" class="add-book">+ Add Book</button>
+        <button id="add-book" type = "submit" class="add-book">+ Add Book</button>
     </div>
+
+    <div id="library" class = "libraryDisplay"></div>
     
     <div class = "form-container">
-    <form id = "popup-form" class="book-form"> 
-        <div class = "form-box">
-        <div class="form-header"> 
-            <h3>Add your book</h3>
-            <button type = "submit" id ="closebtn" class = "closeBtn"> X </button>
-        </div>
+        <form id = "popup-form" class="book-form"> 
+            <div class = "form-box">
+                <div class="form-header"> 
+                    <h3>Add your book</h3>
+                    <button type = "submit" id ="closebtn" class = "closeBtn"> X </button>
+                </div>
 
-        <label for="title">Title: </label>
-        <input type="text" placeholder = "Title of Book" id ="title" name = "title" required/>
+                <label for="title">Title: </label>
+                <input type="text" placeholder = "Title of Book" id ="title" name = "title" required/>
 
-        <label for="author">Author: </label>
-        <input type="text" placeholder = "Author of Book" id ="author" name = "author" required/>
+                <label for="author">Author: </label>
+                <input type="text" placeholder = "Author of Book" id ="author" name = "author" required/>
 
-        <label for="pages">Pages: </label>
-        <input type="number" placeholder = "Pages" id = "pages" name = "page" required/>      
-        
-        <div class="checkbox">
-        <label for="status">Finished reading: </label>
-        <input type="checkbox" name="status" id = "status" value="yes">
-        </div>
+                <label for="pages">Pages: </label>
+                <input type="number" placeholder = "Pages" id = "pages" name = "page" required/>      
 
-        <button id = "submit" type = "submit" class = "submitBtn">Submit</button>
-        </div>
-
-    </form>
+                 <button id = "submit" type = "submit" class = "submitBtn">Submit</button>
+            </div>
+        </form>
     </div>
-    <div id="library"></div>
+
+   
 
 <script src="script.js"></script>  
 </body>
