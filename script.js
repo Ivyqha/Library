@@ -43,19 +43,19 @@ function Library() {
             bookCard.appendChild(bookTitle); 
             bookCard.appendChild(bookAuthor); 
             bookCard.appendChild(bookPage); 
-            bookCard.appendChild(checkboxContainer);; 
+            bookCard.appendChild(checkboxContainer);
             bookCard.appendChild(removeBtn); 
             checkboxContainer.appendChild (readLabel);
             checkboxContainer.appendChild (readCheckbox);
             libraryContainer.appendChild(bookCard);    
 
             //creating onclick function for remove button: 
-            removeBtn.addEventListener("click", function ()  {
-                const index = Library.books.indexOf(books);
-                if (index !== -1) {
-                    Library.books.splice(index, 1);
-                    Library.displayBooks();
-                }; 
+            removeBtn.addEventListener("click", function () {
+                var target = library.books.indexOf(book); 
+                if (target !== -1) {
+                    library.books.splice(target, 1);
+                    library.displayBooks();
+                  }
             });
         } 
     }
@@ -106,9 +106,3 @@ function validForm (event) { ;
     overlay.style.display = "none";
     form.reset(); 
 }
-
-
-//To do: 
-//2) if book has already been added = error 
-//3) remove book from library 
-//4) 

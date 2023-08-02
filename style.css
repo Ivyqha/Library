@@ -155,8 +155,9 @@ label[for="pages"] {
 .libraryDisplay { 
     display: flex; 
     flex-wrap: wrap; 
-    margin: 20px; 
-    justify-content: space-around;
+    justify-content: center;
+    margin: 30px; 
+    
 }
 
 .book-card { 
@@ -165,12 +166,11 @@ label[for="pages"] {
     font-family:'Nunito Sans', sans-serif;
     text-align: center;
     overflow-wrap: break-word;
-   
     border-radius: 15px;
     padding: 20px;
     width: 250px;
     height: 250px;
-    margin: 10px; 
+    margin: 15px; 
 }
 
 input[type="checkbox"] { 
@@ -219,6 +219,7 @@ p {
     background-color: rgb(197, 124, 102);
     border: 2px solid rgb(197, 124, 102)
 }
+
 /*@keyframes open-form {
     from {
         transform: scale(0,0);
