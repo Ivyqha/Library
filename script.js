@@ -27,19 +27,23 @@ function Library() {
             bookCard.classList.add("book-card");
             checkboxContainer.classList.add("checkboxContainer");
             removeBtn.classList.add("removeBtn");
-            removeBtn.type = "submit"; 
+            readLabel.classList.add ("readLabel"); 
+            readCheckbox.classList.add("readCheckBox"); 
+            bookTitle.classList.add("bookTitle-unchecked"); 
+
             bookTitle.textContent = book.title; 
             bookAuthor.textContent = "By: " + book.author;
             bookPage.textContent = book.page + " pages"; 
             readLabel.textContent = "Read: ";
             removeBtn.textContent = "Remove";
-            readLabel.htmlFor = "read";  
+            removeBtn.type = "submit"; 
+            readLabel.htmlFor = "read"; 
             readCheckbox.type = "checkbox";
             readCheckbox.name = "readStatus";
             readCheckbox.value = "checked";
             readCheckbox.id = "read";
             readCheckbox.checked = book.isRead; 
-
+            
             bookCard.appendChild(bookTitle); 
             bookCard.appendChild(bookAuthor); 
             bookCard.appendChild(bookPage); 
@@ -55,8 +59,29 @@ function Library() {
                 if (target !== -1) {
                     library.books.splice(target, 1);
                     library.displayBooks();
-                  }
+                }
             });
+
+            //changing colour of bookcard when book has been read
+            readCheckbox.addEventListener("change", function () { 
+                if (readCheckbox.checked) { 
+                    bookCard.classList.add ("bookCard-checked");
+                    bookTitle.classList.add ( "book-checked");
+                    bookAuthor.classList.add("book-checked"); 
+                    bookPage.classList.add("book-checked"); 
+                    checkboxContainer.classList.add("book-checked"); 
+                    readLabel.classList.add("book-checked"); 
+                    removeBtn.classList.add("removeBtn-checked"); 
+                } else {
+                    bookCard.classList.remove ("bookCard-checked");
+                    bookTitle.classList.remove ( "book-checked");
+                    bookAuthor.classList.remove("book-checked"); 
+                    bookPage.classList.remove("book-checked"); 
+                    checkboxContainer.classList.remove("book-checked"); 
+                    readLabel.classList.remove("book-checked"); 
+                    removeBtn.classList.remove("removeBtn-checked"); 
+                }
+            })
         } 
     }
 }
